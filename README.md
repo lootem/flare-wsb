@@ -5,12 +5,14 @@
 
 This project leverages undocumented techniques to modify Microsoft's [Windows Sandbox (WSB)](https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/) base image and replace it with a FLARE VM.
 
+To see **FLARE-WSB** in action and for more technical details, [check out this blog post](https://ltm.sh/2025/12/13/turning-windows-sandbox-into-a-flare-vm.html).
+
 ## Why?
 
 To quote one of Microsoft's suggested use cases for WSB:
 > **Running Untrusted Applications:** Mitigate security risks by opening untrusted applications or files, such as email attachments in WSB. Improve your safety and security by opening a sandbox with networking disabled and mapping the folder with the application or file you want to open to the sandbox in read-only mode. 
 
-The only problem is that if you want to do *in-depth* analysis on an untrusted application, the sandbox container is so ephemeral that you would need to re-install non-portable tools each time you start it. This can be automated, but depending on which tools you need it can be time-consuming, tedious, and often require internet access (not ideal when analyzing malware!)*
+The only problem is that if you want to do in-depth analysis on an untrusted application, the sandbox container is so ephemeral that you would need to re-install non-portable tools each time you start it. This can be automated, but depending on which tools you need it can be time-consuming, tedious, and often require internet access (not ideal when analyzing malware!)*
 
 The FLARE-VM project is designed to run on a Windows virtual machine image and allows analysts to easily setup and maintain tools for reverse engineering and malware analysis on a persistent image. By leveraging the [WSB CLI](https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-cli) and some creative techniques, we can install FLARE VM within the Sandbox and ensure it persists by saving tools and relevant files to the WSB container's base layer.
 
@@ -28,8 +30,6 @@ At a high-level, the `install.ps1` script does the following:
 5. Upon confirmation, copies relevant files to a writeable path on the base layer (currently `C:\Users\Public\Documents`)
 
 Once the install is complete, you can use `flare-wsb.bat` to launch your new WSB image. This will prompt you to provide some options and will automatically initiate post-install activities (mainly moving files). 
-
-To see **FLARE-WSB** in action and for more technical details, check out my blog post (TBD).
 
 ### Requirements
 
