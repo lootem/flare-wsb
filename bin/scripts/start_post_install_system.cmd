@@ -1,0 +1,1 @@
+cmd /c start /min "" powershell.exe -WindowStyle Hidden -ExecutionPolicy Unrestricted -File "C:\Users\WDAGUtilityAccount\scripts\post_install_system.ps1"

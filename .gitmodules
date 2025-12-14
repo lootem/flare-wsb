@@ -1,0 +1,3 @@
+[submodule "flare-vm"]
+	path = flare-vm
+	url = https://github.com/mandiant/flare-vm
